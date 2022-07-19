@@ -10,11 +10,6 @@ contract Wallet {
   }
 
 
-  // function withdraw(uint _amount) external {
-  //   require(msg.sender==owner);
-  //   payable(msg.sender).transfer(_amount);
-  // }
-
   function balanceOf() external view returns (uint){
     return address(owner).balance;
   }
