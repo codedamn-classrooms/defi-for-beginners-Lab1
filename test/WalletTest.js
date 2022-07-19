@@ -1,10 +1,10 @@
-const Demo=artifacts.require('Demo');
+const Wallet=artifacts.require('Wallet');
 
 
-contract('Demo',(accounts) => {
+contract('Wallet',(accounts) => {
 
     it('Should deploy smart contract properly',async () => {
-         const demo=await Demo.deployed();
+         const demo=await Wallet.deployed();
          assert(demo.address !== '');
          const manager_add= await demo.owner();
          const deployer_add=accounts[0];
@@ -21,7 +21,7 @@ contract('Demo',(accounts) => {
     });
    
      it('Should return balance of the owner', async () =>{
-        const demo=await Demo.deployed();
+        const demo=await Wallet.deployed();
          const manager_add= await demo.owner();
 
       const ownerBal=await demo.balanceOf();
@@ -32,7 +32,7 @@ contract('Demo',(accounts) => {
      });
 
      it('should transfer ether to another address', async() => {
-      const demo=await Demo.deployed();
+      const demo=await Wallet.deployed();
    
         const receiver_beforeBalance= await web3.eth.getBalance(accounts[1]);
         await demo.send(accounts[1], web3.utils.toWei('1', 'ether'),{ value: web3.utils.toWei('1', 'ether')});
@@ -50,7 +50,7 @@ contract('Demo',(accounts) => {
 
      it("amount send should be atleast 1 ether",async () => {
       try{
-         const demo=await Demo.deployed();
+         const demo=await Wallet.deployed();
         // const value=await demo.send(addr,{value: web3.utils.toWei('1', 'ether')});
          const value=await demo.send(accounts[1], web3.utils.toWei('1', 'ether'),{ value: web3.utils.toWei('1', 'ether')});
          const val = (web3.utils.fromWei(value.receipt.logs[0].args.amount, 'ether'));
@@ -72,7 +72,7 @@ contract('Demo',(accounts) => {
    });
 
      it("should return balance of owner",async() => {
-      const demo=await Demo.deployed();
+      const demo=await Wallet.deployed();
       //const balance= await demo.balanceOf();
       await web3.eth.getBalance(accounts[0]);
       assert(true);

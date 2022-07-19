@@ -1,5 +1,5 @@
-const Demo= artifacts.require("Demo");
+const Wallet= artifacts.require("Wallet");
 
 module.exports = function(deployer) {
-  deployer.deploy(Demo);
+  deployer.deploy(Wallet);
 };
