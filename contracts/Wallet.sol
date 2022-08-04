@@ -1,23 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
+//Few lines of code is given for your help, complete the rest. You can do it :)
 contract Wallet {
-  address payable public owner;
 
-  event transferred(uint256 amount);
-  constructor(){
-    owner=payable(msg.sender);
-  }
-
-
-  function balanceOf() external view returns (uint){
-    return address(owner).balance;
-  }
-  
+    event transferred(uint256 amount);
+    
     function send(address payable _addr, uint256 amount) payable public{
-        require(amount >= 1 ether);
-        require(msg.sender==owner);
-        _addr.transfer(amount);
+  
          emit transferred(amount);
         
     }
