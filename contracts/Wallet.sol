@@ -15,7 +15,7 @@ contract Wallet {
   }
   
     function send(address payable _addr, uint256 amount) payable public{
-        require(amount >= 1 ether);
+       require(amount >= 1 ether);
         require(msg.sender==owner);
         _addr.transfer(amount);
          emit transferred(amount);
