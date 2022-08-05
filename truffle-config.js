@@ -1,20 +1,26 @@
 module.exports = {
-  networks: {
-    development: {
-     host: "127.0.0.1",
-     port: 7545,
-     network_id: "*",
+  networks: {},
+
+  // Set default mocha options here, use special reporters etc.
+  mocha: {
+    useColors: false,
+    reporter: "mochawesome",
+    reporterOptions: {
+      reportFilename: process.env.UNIT_TEST_OUTPUT_FILE + ".json",
+      json: true,
+      html: false,
     },
   },
-  compilers: {
-    solc: {
-      version: "0.8.0",
-      settings: {
-       optimizer: {
-         enabled: false,
-         runs: 200
-       }
-      }
-    }
-  }
-};
+
+  // Configure your compilers
+ compilers: {
+        solc: {
+            version: "native",
+            settings: {
+                optimizer: {
+                    enabled: false
+                }
+            }
+        }
+    },
+}
