@@ -5,8 +5,9 @@ contract Wallet {
   address payable public owner;
 
   event transferred(uint256 amount);
-  constructor(){
-    owner=payable(msg.sender);
+  
+  constructor(address payable _owner){
+    owner=_owner;
   }
 
   function balanceOf() external view returns (uint){
@@ -14,7 +15,7 @@ contract Wallet {
   }
   
     function send(address payable _addr, uint256 amount) payable public{
-        require(amount >= 1 ether);
+        require(amount >=1 ether);
         require(msg.sender==owner);
         _addr.transfer(amount);
          emit transferred(amount);

@@ -10,11 +10,13 @@ contract('Wallet',(accounts) => {
          const deployer_add=accounts[0];
          assert.equal(manager_add,deployer_add,"manager is not deployer");
          
-         
+});
 
-
-         
-    });
+    it('should set accounts[0] as owner',async()=>{
+      const demo=await Wallet.deployed();
+      const owner = await demo.owner(); 
+      assert(owner == accounts[0]);
+    })
    
      it('Should return balance of the owner', async () =>{
         const demo=await Wallet.deployed();
@@ -40,7 +42,8 @@ contract('Wallet',(accounts) => {
       const temp = finalBalance.sub(initialBalance)
       // console.log(Number(temp))
         assert(Number(temp)===1000000000000000000, "not transferred");
-
+         
+       
         
       });
 
@@ -60,12 +63,14 @@ contract('Wallet',(accounts) => {
      it('checks if only owner can send', async () => {
       
       try {
-         const demo=await Demo.deployed();
-          await demo.send(accounts[1],10,{from:accounts[0]});
+         const demo=await Wallet.deployed();
+         await demo.send(accounts[1],10000000000000000000,{from:accounts[0], value : 10000000000000000000});
+          
           
       } catch (error) {
-          assert(error,"Only owner should send the tx");
+          assert(false,"Only owner should send the tx");
       }
+      
    });
 
     
