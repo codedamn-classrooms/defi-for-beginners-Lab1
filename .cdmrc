@@ -1,1 +1,3 @@
 tabs: ['contracts/Wallet.sol']
+terminals: ['yarn install']
+run-button: truffle compile
